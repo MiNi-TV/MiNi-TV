@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini TV — Official Channel Website</title>
+  <meta name="description" content="Mini TV — Watch latest videos, shorts, and playlists. Subscribe for tech, gaming, and daily fun!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#EEF8FF',
+              100: '#D7EEFF',
+              200: '#AEDDFF',
+              300: '#7AC7FF',
+              400: '#49A8FF',
+              500: '#1F84FF',
+              600: '#0F67DF',
+              700: '#0A4DB3',
+              800: '#0A3B88',
+              900: '#0A2B66'
+            }
+          },
+          boxShadow: {
+            soft: '0 10px 30px rgba(0,0,0,.12)',
+            glass: '0 10px 30px rgba(31,132,255,.25)'
+          },
+          animation: {
+            float: 'float 8s ease-in-out infinite',
+            shimmer: 'shimmer 2s linear infinite',
+            fadeUp: 'fadeUp .6s ease-out forwards'
+          },
+          keyframes: {
+            float: {
+              '0%,100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-8px)' }
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' }
+            },
+            fadeUp: {
+              '0%': { opacity: 0, transform: 'translateY(12px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    html, body { height: 100%; }
+    .glass {
+      backdrop-filter: saturate(140%) blur(14px);
+      -webkit-backdrop-filter: saturate(140%) blur(14px);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .gradient-hero {
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(31,132,255,.24), transparent 55%),
+        radial-gradient(800px 500px at 90% 10%, rgba(255,77,109,.18), transparent 50%),
+        radial-gradient(900px 500px at 50% 120%, rgba(93,230,255,.18), transparent 50%),
+        linear-gradient(180deg, #0A0F1A 0%, #090e19 100%);
+    }
+    .btn {
+      position: relative;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      box-shadow: 0 10px 24px rgba(31,132,255,.25), inset 0 1px 0 rgba(255,255,255,.08);
+    }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 18px 34px rgba(31,132,255,.32); }
+    .btn:active { transform: translateY(0); }
+    .shine::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.18) 50%, transparent 70%);
+      background-size: 200% 100%;
+      animation: shimmer 3s linear infinite;
+      pointer-events: none;
+      border-radius: inherit;
+    }
+    .tag {
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 6px 18px rgba(0,0,0,.12) inset;
+    }
+    .chip {
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .input {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.14);
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+    .input:focus {
+      outline: none;
+      border-color: rgba(31,132,255,.6);
+      box-shadow: 0 0 0 6px rgba(31,132,255,.15);
+    }
+    .card-overlay {
+      background: radial-gradient(300px 120px at 50% -20%, rgba(255,255,255,.14), transparent 60%);
+    }
+    .scrollbar::-webkit-scrollbar { height: 8px; width: 8px; }
+    .scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,.18); border-radius: 9999px;
+    }
+    .yt-embed {
+      aspect-ratio: 16/9;
+      width: 100%;
+      border: 0;
+      border-radius: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
+    }
+    .badge-live {
+      background: linear-gradient(90deg, #ff1f4b, #ff6b6b);
+      box-shadow: 0 8px 24px rgba(255,31,75,.35);
+    }
+  </style>
+</head>
+<body class="bg-[#0a0f1a] text-white font-sans antialiased">
+  <header class="gradient-hero relative overflow-hidden">
+    <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-6 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="h-10 w-10 rounded-2xl bg-gradient-to-br from-brand-500 to-pink-500 shadow-glass grid place-items-center animate-float">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M4 7.5c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2v-9Z" stroke="white" stroke-width="1.4" opacity=".9"/>
+            <path d="M10 9.8v4.4c0 .4.5.7.9.5l4.1-2.2c.4-.2.4-.8 0-1L10.9 9.3c-.4-.2-.9.1-.9.5Z" fill="white"/>
+          </svg>
+        </div>
+        <div>
+          <div class="text-lg font-bold tracking-tight">Mini TV</div>
+          <div class="text-xs text-white/60 -mt-0.5">Official Channel</div>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#videos" class="text-white/80 hover:text-white">Videos</a>
+        <a href="#shorts" class="text-white/80 hover:text-white">Shorts</a>
+        <a href="#playlists" class="text-white/80 hover:text-white">Playlists</a>
+        <a href="#about" class="text-white/80 hover:text-white">About</a>
+        <a href="#contact" class="text-white/80 hover:text-white">Contact</a>
+      </div>
+      <div class="hidden md:flex items-center gap-3">
+        <div class="relative">
+          <input id="searchInput" placeholder="Search videos..." class="input h-10 w-56 rounded-xl pl-10 pr-3 text-sm text-white/90 placeholder:text-white/40" />
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" width="18" height="18" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M12.9 14.32a8 8 0 1 1 1.414-1.414l3.387 3.387-1.414 1.414-3.387-3.387ZM14 8a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" clip-rule="evenodd"/>
+          </svg>
+        </div>
+        <a href="#subscribe" class="btn shine inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white px-4 py-2 rounded-xl">
+          <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M4 7.5c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2v-9Z" stroke="white" stroke-width="1.5"/><path d="M10 10v4l4-2-4-2Z" fill="white"/></svg>
+          Subscribe
+        </a>
+      </div>
+      <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg glass">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </nav>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-4 pb-16 md:pb-24 relative">
+      <div class="grid md:grid-cols-2 gap-10 items-center">
+        <div class="relative">
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs tag text-white/80 mb-4">
+            <span class="h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            New uploads weekly
+          </span>
+          <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">
+            Mini TV — Big Entertainment in Small Bites
+          </h1>
+          <p class="text-white/70 mt-4 md:text-lg">
+            Tech tips, gaming moments, edits, and daily mini shows. Watch, like, and subscribe to join the Mini TV family.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 mt-6">
+            <a href="#videos" class="btn shine inline-flex items-center gap-2 bg-white text-slate-900 px-5 py-3 rounded-xl font-semibold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7L8 5Z"/></svg>
+              Watch Latest
+            </a>
+            <a href="#subscribe" class="btn inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-400 text-white px-5 py-3 rounded-xl font-semibold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+              Subscribe
+            </a>
+            <div class="flex items-center gap-2 text-white/70 text-sm">
+              <div class="h-8 px-3 rounded-full chip flex items-center gap-2">
+                <span class="h-2 w-2 rounded-full badge-live"></span>
+                <span>Live on weekends</span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-4 mt-6">
+            <div class="flex -space-x-3">
+              <img class="h-8 w-8 rounded-full ring-2 ring-white/10" src="https://i.pravatar.cc/100?img=12" alt="avatar"/>
+              <img class="h-8 w-8 rounded-full ring-2 ring-white/10" src="https://i.pravatar.cc/100?img=22" alt="avatar"/>
+              <img class="h-8 w-8 rounded-full ring-2 ring-white/10" src="https://i.pravatar.cc/100?img=32" alt="avatar"/>
+            </div>
+            <p class="text-white/60 text-sm">100k+ views across all uploads</p>
+          </div>
+        </div>
+        <div class="relative animate-fadeUp">
+          <div class="glass rounded-2xl p-3 shadow-soft card-overlay">
+            <div class="relative rounded-xl overflow-hidden">
+              <iframe class="yt-embed" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Mini TV Featured" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="flex items-center justify-between mt-3">
+              <div>
+                <h3 class="font-semibold">Featured: Mini TV Highlights</h3>
+                <p class="text-white/60 text-sm">Top moments from recent uploads</p>
+              </div>
+              <button class="px-3 py-2 rounded-lg chip text-sm hover:bg-white/10">Add to Watchlist</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="absolute -bottom-8 left-0 right-0 mx-auto w-[90%] h-24 blur-3xl opacity-50 pointer-events-none" style="background: radial-gradient(50% 100% at 50% 0%, rgba(31,132,255,.45), rgba(255,77,109,.35), transparent 80%);"></div>
+    </div>
+
+    <div id="mobileMenu" class="md:hidden hidden px-6 pb-6">
+      <div class="glass rounded-2xl p-4 space-y-2">
+        <a href="#videos" class="block px-3 py-2 rounded-lg hover:bg-white/5">Videos</a>
+        <a href="#shorts" class="block px-3 py-2 rounded-lg hover:bg-white/5">Shorts</a>
+        <a href="#playlists" class="block px-3 py-2 rounded-lg hover:bg-white/5">Playlists</a>
+        <a href="#about" class="block px-3 py-2 rounded-lg hover:bg-white/5">About</a>
+        <a href="#contact" class="block px-3 py-2 rounded-lg hover:bg-white/5">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="stats" class="py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid sm:grid-cols-3 gap-4">
+        <div class="glass rounded-2xl p-5 flex items-center gap-4">
+          <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-brand-500 to-pink-500 grid place-items-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 7v10M7 12h10" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold" id="statSubs">0</div>
+            <div class="text-white/60 text-sm">Subscribers</div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-5 flex items-center gap-4">
+          <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-emerald-500 to-cyan-500 grid place-items-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5Z" fill="white"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold" id="statViews">0</div>
+            <div class="text-white/60 text-sm">Total Views</div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-5 flex items-center gap-4">
+          <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-violet-500 to-fuchsia-500 grid place-items-center">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M5 6h14v12H5z" stroke="white" stroke-width="1.6"/><path d="M10 9.5v5l4-2.5-4-2.5Z" fill="white"/></svg>
+          </div>
+          <div>
+            <div class="text-2xl font-extrabold" id="statUploads">0</div>
+            <div class="text-white/60 text-sm">Uploads</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="videos" class="py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Latest Videos</h2>
+          <div class="flex gap-2 overflow-auto scrollbar">
+            <button data-filter="all" class="px-3 py-1.5 rounded-lg chip text-sm active-filter">All</button>
+            <button data-filter="tech" class="px-3 py-1.5 rounded-lg chip text-sm">Tech</button>
+            <button data-filter="gaming" class="px-3 py-1.5 rounded-lg chip text-sm">Gaming</button>
+            <button data-filter="edits" class="px-3 py-1.5 rounded-lg chip text-sm">Edits</button>
+          </div>
+        </div>
+        <div id="videoGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <div class="text-center mt-8">
+          <button id="loadMoreBtn" class="btn px-5 py-3 rounded-xl bg-white/10 hover:bg-white/20">Load more</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="shorts" class="py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Trending Shorts</h2>
+          <span class="px-3 py-1 rounded-full tag text-xs">Under 60s</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="relative glass rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=700&auto=format&fit=crop" alt="short" class="h-64 w-full object-cover transition duration-300 group-hover:scale-105" />
+            <div class="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/60 via-black/0 to-transparent">
+              <div>
+                <div class="text-sm font-semibold">Quick Tech Tip</div>
+                <div class="text-xs text-white/70">12k views</div>
+              </div>
+            </div>
+          </div>
+          <div class="relative glass rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=700&auto=format&fit=crop" alt="short" class="h-64 w-full object-cover transition duration-300 group-hover:scale-105" />
+            <div class="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/60 via-black/0 to-transparent">
+              <div>
+                <div class="text-sm font-semibold">Epic Win!</div>
+                <div class="text-xs text-white/70">19k views</div>
+              </div>
+            </div>
+          </div>
+          <div class="relative glass rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1529251333259-d36cccaf21e5?q=80&w=700&auto=format&fit=crop" alt="short" class="h-64 w-full object-cover transition duration-300 group-hover:scale-105" />
+            <div class="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/60 via-black/0 to-transparent">
+              <div>
+                <div class="text-sm font-semibold">Daily Mini Show</div>
+                <div class="text-xs text-white/70">8.4k views</div>
+              </div>
+            </div>
+          </div>
+          <div class="relative glass rounded-2xl overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=700&auto=format&fit=crop" alt="short" class="h-64 w-full object-cover transition duration-300 group-hover:scale-105" />
+            <div class="absolute inset-0 p-3 flex items-end bg-gradient-to-t from-black/60 via-black/0 to-transparent">
+              <div>
+                <div class="text-sm font-semibold">Satisfying Edit</div>
+                <div class="text-xs text-white/70">22k views</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="playlists" class="py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl md:text-3xl font-extrabold">Playlists</h2>
+          <a href="#" class="text-white/70 hover:text-white text-sm">View all</a>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="glass rounded-2xl overflow-hidden">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop" class="h-48 w-full object-cover" alt="playlist"/>
+              <div class="absolute inset-0 bg-black/30"></div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Tech Tutorials</div>
+                  <div class="px-2 py-1 rounded-lg tag text-xs">12 videos</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 text-white/70 text-sm">Learn quick fixes, apps, and gear reviews.</div>
+          </div>
+
+          <div class="glass rounded-2xl overflow-hidden">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop" class="h-48 w-full object-cover" alt="playlist"/>
+              <div class="absolute inset-0 bg-black/30"></div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Gaming Moments</div>
+                  <div class="px-2 py-1 rounded-lg tag text-xs">18 videos</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 text-white/70 text-sm">Highlights, wins, fails, and challenges.</div>
+          </div>
+
+          <div class="glass rounded-2xl overflow-hidden">
+            <div class="relative">
+              <img src="https://images.unsplash.com/photo-1529336953121-ad5a0d43d0e6?q=80&w=1200&auto=format&fit=crop" class="h-48 w-full object-cover" alt="playlist"/>
+              <div class="absolute inset-0 bg-black/30"></div>
+              <div class="absolute bottom-3 left-3 right-3">
+                <div class="flex items-center justify-between">
+                  <div class="font-semibold">Aesthetic Edits</div>
+                  <div class="px-2 py-1 rounded-lg tag text-xs">9 videos</div>
+                </div>
+              </div>
+            </div>
+            <div class="p-4 text-white/70 text-sm">Satisfying transitions and effects.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-8 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-2xl md:text-3xl font-extrabold mb-3">About Mini TV</h2>
+          <p class="text-white/70">
+            Mini TV is your bite-sized entertainment hub. From quick tech fixes to epic gaming wins and aesthetic edits, we keep it fast, fun, and fresh. New videos every week with shorts in-between.
+          </p>
+          <ul class="mt-4 space-y-2 text-white/80">
+            <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-emerald-400"></span> Family-friendly content</li>
+            <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-cyan-400"></span> High-quality edits & audio</li>
+            <li class="flex items-center gap-3"><span class="h-2 w-2 rounded-full bg-pink-400"></span> Community giveaways</li>
+          </ul>
+          <div class="mt-5 flex gap-3">
+            <a href="#subscribe" class="btn bg-brand-500 hover:bg-brand-400 px-5 py-3 rounded-xl">Subscribe</a>
+            <a href="#contact" class="btn bg-white/10 hover:bg-white/20 px-5 py-3 rounded-xl">Contact</a>
+          </div>
+        </div>
+        <div class="order-1 md:order-2">
+          <div class="relative glass rounded-2xl p-4">
+            <img src="https://images.unsplash.com/photo-1525182008055-f88b95ff7980?q=80&w=1200&auto=format&fit=crop" class="rounded-xl" alt="studio"/>
+            <div class="absolute -top-4 -right-4 bg-brand-500 text-white px-3 py-1 rounded-xl text-xs shadow-glass">Since 2023</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="subscribe" class="py-10">
+      <div class="max-w-3xl mx-auto px-6 lg:px-8">
+        <div class="glass rounded-2xl p-6 md:p-8">
+          <div class="flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <h3 class="text-xl md:text-2xl font-extrabold">Get updates from Mini TV</h3>
+              <p class="text-white/70 text-sm mt-1">No spam. Only the best uploads, giveaways, and live announcements.</p>
+            </div>
+            <div class="flex-1 min-w-[260px]">
+              <form id="subscribeForm" class="mt-4 md:mt-0 flex gap-2">
+                <input type="email" required placeholder="Your email" class="input h-12 w-full rounded-xl px-4" />
+                <button class="btn h-12 px-5 rounded-xl bg-brand-500 hover:bg-brand-400 text-white">Join</button>
+              </form>
+              <p id="subscribeMsg" class="text-emerald-400 text-sm mt-2 hidden">Thanks! Please check your inbox.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="py-10">
+      <div class="max-w-7xl mx-auto px-6 lg:px-8 grid md:grid-cols-2 gap-8">
+        <div class="glass rounded-2xl p-6">
+          <h3 class="text-xl font-extrabold mb-4">Business & Collaborations</h3>
+          <form id="contactForm" class="space-y-3">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <input required placeholder="Your name" class="input h-12 rounded-xl px-4" />
+              <input type="email" required placeholder="Email" class="input h-12 rounded-xl px-4" />
+            </div>
+            <input placeholder="Subject" class="input h-12 rounded-xl px-4" />
+            <textarea rows="4" placeholder="Tell us about your idea..." class="input rounded-xl p-4"></textarea>
+            <button class="btn bg-white/10 hover:bg-white/20 px-5 py-3 rounded-xl">Send Message</button>
+            <p id="contactMsg" class="text-emerald-400 text-sm hidden">Message sent! We’ll reply soon.</p>
+          </form>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h3 class="text-xl font-extrabold mb-4">Channel Links</h3>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <a class="chip rounded-xl p-4 hover:bg-white/10 flex items-center gap-3" href="https://youtube.com" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" stroke="white" opacity=".8"/><path d="M10 9.5v5l4-2.5-4-2.5Z" fill="white"/></svg>
+              <div>
+                <div class="font-semibold">YouTube</div>
+                <div class="text-xs text-white/60">Subscribe & comment</div>
+              </div>
+            </a>
+            <a class="chip rounded-xl p-4 hover:bg-white/10 flex items-center gap-3" href="#" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" opacity=".8"/><path d="M7 13c2 2 8 2 10-3" stroke="white" /></svg>
+              <div>
+                <div class="font-semibold">Instagram</div>
+                <div class="text-xs text-white/60">Reels & behind the scenes</div>
+              </div>
+            </a>
+            <a class="chip rounded-xl p-4 hover:bg-white/10 flex items-center gap-3" href="#" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16v10H4z" stroke="white" opacity=".8"/><path d="M6 9h12" stroke="white"/></svg>
+              <div>
+                <div class="font-semibold">Twitter/X</div>
+                <div class="text-xs text-white/60">Updates & polls</div>
+              </div>
+            </a>
+            <a class="chip rounded-xl p-4 hover:bg-white/10 flex items-center gap-3" href="#" target="_blank" rel="noopener">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2l7 20-7-4-7 4 7-20Z" stroke="white" opacity=".8"/></svg>
+              <div>
+                <div class="font-semibold">Discord</div>
+                <div class="text-xs text-white/60">Join the community</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="glass rounded-2xl p-6 md:p-8">
+        <div class="grid md:grid-cols-4 gap-6">
+          <div>
+            <div class="flex items-center gap-3">
+              <div class="h-9 w-9 rounded-xl bg-gradient-to-br from-brand-500 to-pink-500 grid place-items-center">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 7.5c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v9c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2v-9Z" stroke="white" stroke-width="1.4"/><path d="M10 10v4l4-2-4-2Z" fill="white"/></svg>
+              </div>
+              <div class="font-bold">Mini TV</div>
+            </div>
+            <p class="text-white/60 text-sm mt-3">Big entertainment in small bites.</p>
+          </div>
+          <div>
+            <div class="font-semibold mb-3">Explore</div>
+            <ul class="space-y-2 text-white/70 text-sm">
+              <li><a href="#videos" class="hover:text-white">Videos</a></li>
+              <li><a href="#shorts" class="hover:text-white">Shorts</a></li>
+              <li><a href="#playlists" class="hover:text-white">Playlists</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold mb-3">Support</div>
+            <ul class="space-y-2 text-white/70 text-sm">
+              <li><a href="#contact" class="hover:text-white">Contact</a></li>
+              <li><a href="#subscribe" class="hover:text-white">Newsletter</a></li>
+              <li><a href="#" class="hover:text-white">FAQs</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-semibold mb-3">Business</div>
+            <ul class="space-y-2 text-white/70 text-sm">
+              <li>minitv@creator.mail</li>
+              <li>Collabs open</li>
+              <li>Brand deals</li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-white/10 mt-6 pt-4 flex flex-col md:flex-row items-center justify-between gap-3 text-white/50 text-sm">
+          <div>© <span id="year"></span> Mini TV. All rights reserved.</div>
+          <div class="flex items-center gap-3">
+            <a href="#" class="hover:text-white">Privacy</a>
+            <span class="opacity-30">•</span>
+            <a href="#" class="hover:text-white">Terms</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
+    // Animated counters
+    function animateCounter(el, to, duration = 1200) {
+      const start = 0;
+      const startTime = performance.now();
+      function step(now) {
+        const p = Math.min((now - startTime) / duration, 1);
+        const val = Math.floor(start + (to - start) * (1 - Math.pow(1 - p, 3)));
+        el.textContent = val.toLocaleString();
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+    animateCounter(document.getElementById('statSubs'), 12400);
+    animateCounter(document.getElementById('statViews'), 279403);
+    animateCounter(document.getElementById('statUploads'), 86);
+
+    // Mock video data
+    const videos = [
+      { id: 'dQw4w9WgXcQ', title: 'Tech Hack: Faster Phone in 60s', tags: ['tech'], views: '14k', time: '5:21', thumb: 'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg' },
+      { id: 'l482T0yNkeo', title: 'Gaming: Impossible Clutch!', tags: ['gaming'], views: '31k', time: '8:02', thumb: 'https://i.ytimg.com/vi/l482T0yNkeo/hqdefault.jpg' },
+      { id: '3JZ_D3ELwOQ', title: 'Aesthetic Edit Pack V2', tags: ['edits'], views: '9.8k', time: '3:44', thumb: 'https://i.ytimg.com/vi/3JZ_D3ELwOQ/hqdefault.jpg' },
+      { id: 'e-ORhEE9VVg', title: 'Top 5 Free Apps You Need', tags: ['tech'], views: '22k', time: '6:10', thumb: 'https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg' },
+      { id: 'kxopViU98Xo', title: 'Speedrun Highlights', tags: ['gaming'], views: '17k', time: '7:15', thumb: 'https://i.ytimg.com/vi/kxopViU98Xo/hqdefault.jpg' },
+      { id: 'fJ9rUzIMcZQ', title: 'Smooth Transitions Tutorial', tags: ['edits'], views: '12k', time: '4:21', thumb: 'https://i.ytimg.com/vi/fJ9rUzIMcZQ/hqdefault.jpg' },
+      { id: 'C0DPdy98e4c', title: 'Gear on a Budget 2025', tags: ['tech'], views: '6.1k', time: '9:31', thumb: 'https://i.ytimg.com/vi/C0DPdy98e4c/hqdefault.jpg' },
+      { id: 'hTWKbfoikeg', title: 'Funny Moments Montage', tags: ['gaming'], views: '28k', time: '10:01', thumb: 'https://i.ytimg.com/vi/hTWKbfoikeg/hqdefault.jpg' },
+      { id: '2Vv-BfVoq4g', title: 'Color Grading for Shorts', tags: ['edits'], views: '11k', time: '2:58', thumb: 'https://i.ytimg.com/vi/2Vv-BfVoq4g/hqdefault.jpg' }
+    ];
+    let currentFilter = 'all';
+    let loaded = 0;
+    const perLoad = 6;
+    const grid = document.getElementById('videoGrid');
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+
+    function videoCard(v) {
+      return `
+        <article class="group glass rounded-2xl overflow-hidden hover:shadow-glass transition">
+          <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
+            <div class="relative">
+              <img src="${v.thumb}" alt="${v.title}" class="w-full h-48 object-cover transition duration-300 group-hover:scale-105" />
+              <span class="absolute bottom-2 right-2 text-xs px-2 py-1 rounded chip bg-black/60">${v.time}</span>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold line-clamp-2">${v.title}</h3>
+              <div class="mt-2 flex items-center justify-between text-white/60 text-sm">
+                <span>${v.views} views</span>
+                <div class="flex gap-1">
+                  ${v.tags.map(t=>`<span class="px-2 py-0.5 text-xs rounded tag">${t}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      `;
+    }
+    function render(reset=false) {
+      if (reset) { grid.innerHTML=''; loaded = 0; }
+      const filtered = currentFilter==='all' ? videos : videos.filter(v=>v.tags.includes(currentFilter));
+      const next = filtered.slice(loaded, loaded+perLoad);
+      grid.insertAdjacentHTML('beforeend', next.map(videoCard).join(''));
+      loaded += next.length;
+      loadMoreBtn.classList.toggle('hidden', loaded >= filtered.length);
+    }
+    render();
+
+    // Filters
+    document.querySelectorAll('[data-filter]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('[data-filter]').forEach(b=>b.classList.remove('active-filter','bg-white/20'));
+        btn.classList.add('active-filter','bg-white/20');
+        currentFilter = btn.dataset.filter;
+        render(true);
+      });
+    });
+
+    // Load more
+    loadMoreBtn.addEventListener('click', ()=> render());
+
+    // Search
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e)=>{
+      const q = e.target.value.toLowerCase();
+      const filtered = videos.filter(v => v.title.toLowerCase().includes(q) && (currentFilter==='all' || v.tags.includes(currentFilter)));
+      grid.innerHTML = filtered.map(videoCard).join('') || '<div class="text-white/60">No results.</div>';
+      loadMoreBtn.classList.add('hidden');
+    });
+
+    // Forms
+    document.getElementById('subscribeForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      document.getElementById('subscribeMsg').classList.remove('hidden');
+      e.target.reset();
+    });
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      document.getElementById('contactMsg').classList.remove('hidden');
+      e.target.reset();
+    });
+
+    // Accessibility: smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+  </script>
+</body>
+</html>
